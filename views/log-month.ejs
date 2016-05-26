@@ -1,0 +1,418 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+<link href="//cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css" rel="stylesheet">
+
+<div class="container content">
+    <div class="row">
+        <div id="panel" class="panel panel-dashboard full-width">
+            <div class="panel-heading panel-heading-cbj">点击量</div>
+              <div class="panel-body">
+                <form class="form-inline" method="get"  name="form" action="/data/access">
+                <div class="panel-elem">
+                <div class="form-group">
+                    <label>点击对象</label>
+                    <div class="form-group">
+                    微信朋友分享次数<input type="checkbox" name="action2" value="share_friend"  />&nbsp;
+                    微信朋友圈分享次数<input type="checkbox" name="action2" value="share_timeline"  />&nbsp;
+                    分享按钮<input type="checkbox" name="action2" value="share_button"  />&nbsp;
+                    活动详情<input type="checkbox" name="action2" value="about_easywash"  />&nbsp;
+                    活动规则<input type="checkbox" name="action2" value="rules"  />&nbsp;
+                    地址<input type="checkbox" name="action2" value="address"  />&nbsp;
+                    MAP立即前往<input type="checkbox" name="action2" value="google_map"  />&nbsp;
+                    CALL客服<input type="checkbox" name="action2" value="tel"  />&nbsp;
+                    奖品1详情<input type="checkbox" name="action2" value="prize1_page"  />&nbsp;
+                    奖品2详情<input type="checkbox" name="action2" value="prize2_page"  />&nbsp;
+                    奖品1成功领奖<input type="checkbox" name="action2" value="redeem_prize1"  />&nbsp;
+                    奖品2成功领奖<input type="checkbox" name="action2" value="redeem_prize2"  />&nbsp;
+                    继续储泡<input type="checkbox" name="action2" value="continue_collect"  />&nbsp;
+                    去洗车<input type="checkbox" name="action2" value="go_wash"  />&nbsp;
+                    奖品1返回<input type="checkbox" name="action2" value="prize1_return"  />&nbsp;
+                    奖品2返回<input type="checkbox" name="action2" value="socprize2_returncer"  />&nbsp;
+                    活动详情返回<input type="checkbox" name="action2" value="about_easywash_return"  />&nbsp;
+                    </div>
+
+                    <!--
+                    <select class="form-control" id="advertisement" name="action">
+                        <option value="share_friend">微信朋友分享次数</option>
+                        <option value="share_timeline">微信朋友圈分享次数</option>
+                        <option value="share_button">分享按钮</option>
+                        <option value="about_easywash">活动详情</option>
+                        <option value="rules">活动规则</option>
+                        <option value="address">地址</option>
+                        <option value="google_map">MAP立即前往</option>
+                        <option value="tel">CALL客服</option>
+                        <option value="prize1_page">奖品1详情</option>
+                        <option value="prize2_page">奖品2详情</option>
+                        <option value="redeem_prize1">奖品1成功领奖</option>
+                        <option value="redeem_prize2">奖品2成功领奖</option>
+                        <option value="continue_collect">继续储泡</option>
+                        <option value="go_wash">去洗车</option>
+                        <option value="prize1_return">奖品1返回</option>
+                        <option value="prize2_return">奖品2返回</option>
+                        <option value="about_easywash_return">活动详情返回</option>
+                    </select>-->
+
+                </div>
+                </div>
+                <div class="panel-elem"><!--share_friend share_timeline share_button about_easywash rules address google_map tel prize1_page prize2_page redeem_prize1 redeem_prize2 continue_collect go_wash-->
+
+                </div>
+                <div class="panel-elem">
+                <div class="form-group">
+                    <label>年份</label>
+                    <select class="form-control" id="year" name="year">
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>月份</label>
+                    <select class="form-control" id="month" name="month" >
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+
+                <input type="hidden" name="buttonAction" id="buttonAction" class="btn btn-default" value=""/>
+                <input type="button" id="accessMonth" class="btn btn-default" value="月统计"/>
+
+                <div class="pull-right">
+                <div class="form-group">
+                    <label>日期</label>
+                    <input type="text" class="form-control" id="date" name="date">
+                </div>
+                <input type="button" class="btn btn-default" id="accessDate" value="日统计">
+                </div>
+                </div>
+
+                </form>
+                <label>
+                  <% if (typeof date != 'undefined')
+                  {
+                  %>
+                  日期：<%=date%>
+                  <%
+                  }
+                  %>
+                  <% if (typeof year != 'undefined')
+                  {
+                  %>
+                  月份：<%=year%>年 <%=month%>月
+                  <%
+                  }
+                  %>
+                </label>
+                <p>
+                  <label>
+                    <%if (typeof action != 'undefined'){
+                    %>
+                    <%=action%>点击
+                    <%
+                    }
+                    %>
+
+                  </label>
+                </p>
+                <canvas id="access-ctx"></canvas>
+
+
+                <table class="table" style="width: 400px">
+                  <%
+                  if (typeof totalUser != 'undefined'){
+                  %>
+
+                    <tr><td><span>&nbsp;&nbsp;&nbsp;&nbsp;</span> 用户数</td>
+                    <td><%=totalUser%></td>
+                    </tr>
+
+
+                  <%
+                  }
+                  %>
+                  <% if(typeof action2 != 'undefined' ){
+                    color = ["#46BFBD", "#FDB45C", "#212121", "#64af9c", "#6b1f3c", "#127690", "#a2798f", "#008b8b", "#99ccff", "#cc99ff", "#9feaae", "#40d65d", "#65ada2", "#5ee4bb", "#9ffff7", "#2412b4", "#34d491", "#da6665", "#f3d681", "#b9b9b9", "#b9b9b9", "#ffae1a", "#2137ff", "#d8941a", "#d8941a", "#ff2a1a", "#e6b3e6", "#e6b3e6", "#a8e4f0", "#6ef79c", "#5cf53d", "#d6d65c", "#adb87a", "#d6995c", "#f76e6e", "#f08a75", "#eb9947", "#ffdd33", "#cccc00", "#99eb47", "#75f075", "#85e0b3", "#33ffdd","#998cd9",];
+                    var actionMap = {};
+                    actionMap['share_friend'] = "微信朋友分享次数" ;
+                    actionMap['share_timeline'] = "微信朋友圈分享次数" ;
+                    actionMap['share_button'] = "分享按钮" ;
+                    actionMap['about_easywash'] = "活动详情" ;
+                    actionMap['rules'] = "活动规则" ;
+                    actionMap['address'] = "地址";
+                    actionMap['google_map'] = "MAP立即前往" ;
+                    actionMap['tel'] = "CALL客服";
+                    actionMap['prize1_page'] = "奖品1详情";
+                    actionMap['prize2_page'] = "奖品2详情" ;
+                    actionMap['redeem_prize1'] = "奖品1成功领奖";
+                    actionMap['redeem_prize2'] = "奖品2成功领奖";
+                    actionMap['continue_collect'] = "继续储泡";
+                    actionMap['go_wash'] = '去洗车';
+                    actionMap['prize1_return'] = "奖品1返回";
+                    actionMap['prize2_return'] = "奖品2返回";
+                    actionMap['about_easywash_return'] = "活动详情返回";
+                    for(var i=0; i< action2.length; i++){
+                  %>
+
+                  <tr><td><span style='background-color:<%=color[i]%>'>&nbsp;&nbsp;&nbsp;&nbsp;</span> <%=actionMap[action2[i]]%></td>
+                  <td> <%=actionAccessTotal[action2[i]]%></td>
+                  </tr>
+                  <%
+                    }
+                  }
+                  %>
+
+
+                </table>
+
+
+            </div>
+    </div>
+    </div>
+
+</div>
+<script type="text/javascript" src="/js/dependencies/jquery.min.js"></script>
+<script type="text/javascript" src="/bootstrap/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+
+<script>
+
+$(document).ready(function(){
+
+    $("#access-ctx").css({"width":$("#panel").width()*0.95, "height":"400px"});
+    var yData = []; var yLabel = [];
+    yAction = {};
+
+    <%
+    if(typeof action2 != 'undefined'){
+    for (var i = 0; i< action2.length; i++){
+    %>
+    yAction["<%=action2[i]%>"] = [];
+
+    <%
+  }}
+    %>
+    <%
+      if(typeof accessCountMonth != "undefined" || typeof accessCountDate != "undefined"){
+
+        if(typeof accessCountMonth != 'undefined'){
+            var yVal = 0;
+            var yPrice = 0;
+            var totalData = 0;
+            var totalPrice = 0;
+            for(var i=1; i<=31; i++){
+                if(accessCountMonth[i+""]!=undefined){
+                    yVal = accessCountMonth[i+""];
+
+                }
+                else {
+                    yVal = 0;
+
+                }
+                totalData += yVal;
+
+    %>
+                yData.push(<%=yVal%>);
+                yLabel.push("<%=i%>");
+
+    <%
+            }
+    %>
+
+    <%
+        }
+    %>
+
+    <%
+        if(typeof actionAccessCountMonth != 'undefined'){
+          var y = {};
+           for (var i2 =0; i2< action2.length; i2++){
+             var action = action2[i2];
+             y[action] = [];
+             var yVal = 0;
+             var yPrice = 0;
+             var totalData = 0;
+             var totalPrice = 0;
+             for(var i=1; i<=31; i++){
+                 if(actionAccessCountMonth[action]&&actionAccessCountMonth[action][i+""]!=undefined){
+                     yVal = actionAccessCountMonth[action][i+""];
+                 }
+                 else {
+                     yVal = 0;
+
+                 }
+                 totalData += yVal;
+
+     %>
+                 yAction["<%=action%>"].push(<%=yVal%>);
+
+                 //alert('227');
+
+     <%
+             }
+     %>
+
+
+
+    <%
+        }
+      }
+    %>
+
+    <%
+        if(typeof actionAccessCountDate != 'undefined'){
+          var y = {};
+          if(action2){
+           for (var i2 =0; i2< action2.length; i2++){
+             var action = action2[i2];
+             y[action] = [];
+             var yVal = 0;
+             var yPrice = 0;
+             var totalData = 0;
+             var totalPrice = 0;
+             for(var i=1; i<=24; i++){
+                 if(actionAccessCountDate[action]&& typeof actionAccessCountDate[action][i+""]!='undefined'){
+                   console.log('action'+action+" "+actionAccessCountDate[action]);
+                   yVal = actionAccessCountDate[action][i+""];
+                 }
+                 else {
+                   console.log('else');
+                     yVal = 0;
+
+                 }
+                 totalData += yVal;
+
+                  //yVal = 0;
+                  //console.log(yVal);
+     %>
+                 yAction["<%=action%>"].push(<%=yVal%>);
+
+                 //alert('227');
+
+     <%
+             }
+     %>
+
+
+
+    <%
+        }
+      }
+      }
+    %>
+
+
+
+
+
+
+    <% if(typeof accessCountDate != 'undefined'){
+            var yVal = 0; var yPrice = 0;
+            var totalData = 0;
+            var totalPrice = 0;
+            for(var i=1; i<=24; i++){
+                if(accessCountDate[i+""]!=undefined){
+                    yVal = accessCountDate[i+""];
+
+
+                }
+                else {
+                    yVal = 0;
+                    yPrice = 0;
+                }
+                totalData += yVal;
+
+    %>
+        yData.push(<%=yVal%>);
+        yLabel.push("<%=i%>");
+    <%
+        }
+        %>
+
+    <%
+    }
+  }
+    %>
+
+    var today = new Date();
+
+    $("#accessMonth").click(function(err){
+        $("#buttonAction").attr("value", "accessMonth");
+        document.forms['form'].submit();
+    });
+    $("#accessDate").click(function(err){
+        $("#buttonAction").attr("value", "accessDate");
+        document.forms['form'].submit();
+    })
+
+   <%
+   if(typeof action2 != 'undefined'){
+     color = ["#46BFBD", "#FDB45C", "#212121", "#64af9c", "#6b1f3c", "#127690", "#a2798f", "#008b8b", "#99ccff", "#cc99ff", "#9feaae", "#40d65d", "#65ada2", "#5ee4bb", "#9ffff7", "#2412b4", "#34d491", "#da6665", "#f3d681", "#b9b9b9", "#b9b9b9", "#ffae1a", "#2137ff", "#d8941a", "#d8941a", "#ff2a1a", "#e6b3e6", "#e6b3e6", "#a8e4f0", "#6ef79c", "#5cf53d", "#d6d65c", "#adb87a", "#d6995c", "#f76e6e", "#f08a75", "#eb9947", "#ffdd33", "#cccc00", "#99eb47", "#75f075", "#85e0b3", "#33ffdd","#998cd9",];
+   %>
+
+    data = {
+        labels: yLabel,
+        datasets: [
+
+            <%
+            for (var i=0; i< action2.length; i++){
+            %>
+            {
+                label: "Access dataset",
+                fillColor: "rgba(220,220,220,0.2)",
+                strokeColor: "<%=color[i]%>",
+                pointColor: "<%=color[i]%>",
+                pointStrokeColor: "#fff",
+                pointHighlightFill: "#fff",
+                pointHighlightStroke: "rgba(220,220,220,1)",
+                data: yAction["<%=action2[i]%>"]
+            }
+            <% if(i!=action2.length-1){
+            %>
+            ,
+            <%
+            }
+            %>
+
+
+            <%
+            }
+            %>
+
+        ]
+    };
+    <%
+    }
+    %>
+    var myLineChart;
+    var ctx = document.getElementById("access-ctx").getContext("2d");
+        myLineChart = new Chart(ctx).Line(data, {
+        bezierCurve: false
+        });
+
+    $( window ).resize(function() {
+      $("#access-ctx").css({"width":$("#panel").width()*0.95, "height":"400px"});
+    });
+});
+
+
+
+
+</script>
+<script src="/js/geo.js"></script>
