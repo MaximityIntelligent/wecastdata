@@ -11,7 +11,10 @@ module.exports = {
 		var action2 = req.param('action2');
 		var option = {};
 		//option.action = actionName;
-		console.log(action2);
+		if( typeof action2 === 'string' ) {
+    	action2 = [ action2 ];
+		}
+		//console.log(action2);
 		user.find().exec(function(err, users){
 			var buttonAction = req.param('buttonAction');
 				if(buttonAction=="accessMonth"){
