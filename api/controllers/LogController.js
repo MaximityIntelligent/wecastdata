@@ -7,16 +7,22 @@
 var moment = require('moment');
 module.exports = {
 	log: function(req, res){
+		var buttonAction = req.param('buttonAction');
+
 		var actionName = req.param('action');
 		var action2 = req.param('action2');
 		var option = {};
 		//option.action = actionName;
+		if(!action2||!buttonAction){
+			res.view('log-month');
+			return;
+		}
 		if( typeof action2 === 'string' ) {
     	action2 = [ action2 ];
 		}
 		//console.log(action2);
 		user.find().exec(function(err, users){
-			var buttonAction = req.param('buttonAction');
+
 				if(buttonAction=="accessMonth"){
 					var year = req.param("year");
 					var month = req.param("month");
