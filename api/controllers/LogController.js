@@ -121,7 +121,6 @@ module.exports = {
 							var accessCountDate = {};
 							for(var property in accessObj) {
 									accessCountDate[property] = accessObj[property].length;
-
 							}
 							var totalAccess = accessArr.length;
 							if(!action2){
