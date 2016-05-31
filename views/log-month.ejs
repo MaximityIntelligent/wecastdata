@@ -75,16 +75,16 @@
                     <select class="form-control" id="month" name="month">
                       <%
                       var today = new Date();
-                      var month;
+                      var month2;
                       for(var i=0; i<12; i++){
-                        month = i+1;
+                        month2 = i+1;
                         if(today.getMonth()==i){
                       %>
-                        <option value="<%=month%>" selected><%=month%></option>
+                        <option value="<%=month2%>" selected><%=month2%></option>
                       <%
                       }else{
                       %>
-                        <option value="<%=month%>"><%=month%></option>
+                        <option value="<%=month2%>"><%=month2%></option>
                       <%
                       }
                       }
