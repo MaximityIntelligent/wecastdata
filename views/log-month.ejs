@@ -72,7 +72,24 @@
                 </div>
                 <div class="form-group">
                     <label>月份</label>
-                    <select class="form-control" id="month" name="month" >
+                    <select class="form-control" id="month" name="month">
+                      <%
+                      var today = new Date();
+                      var month;
+                      for(var i=0; i<12; i++){
+                        month = i+1;
+                        if(today.getMonth()==i){
+                      %>
+                        <option value="<%=month%>" selected><%=month%></option>
+                      <%
+                      }else{
+                      %>
+                        <option value="<%=month%>"><%=month%></option>
+                      <%
+                      }
+                      }
+                      %>
+                        <!--
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
@@ -85,6 +102,7 @@
                         <option value="10">10</option>
                         <option value="11">11</option>
                         <option value="12">12</option>
+                      -->
                     </select>
                 </div>
 
