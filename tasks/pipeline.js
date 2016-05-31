@@ -59,7 +59,7 @@ var templateFilesToInject = [
 // (i.e. where the other Grunt tasks spit them out, or in some cases, where
 // they reside in the first place)
 module.exports.cssFilesToInject = cssFilesToInject.map(transformPath);
-//module.exports.jsFilesToInject = jsFilesToInject.map(transformPath);
+module.exports.jsFilesToInject = jsFilesToInject.map(transformPath);
 module.exports.templateFilesToInject = templateFilesToInject.map(transformPath);
 
 // Transform paths relative to the "assets" folder to be relative to the public
