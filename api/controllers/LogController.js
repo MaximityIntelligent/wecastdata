@@ -54,7 +54,7 @@ module.exports = {
 								actionAccessCountMonth[property] = {};
 								for (var property2 in actionAccess[property+'-access']){
 									actionAccessCountMonth[property][property2] = actionAccess[property+'-access'][property2].length;
-									console.log(property+property2+actionAccess[property+'-access'][property2].length);
+									//console.log(property+property2+actionAccess[property+'-access'][property2].length);
 								}
 
 							}
@@ -105,7 +105,7 @@ module.exports = {
 								actionAccessCountDate[property] = {};
 								for (var property2 in actionAccess[property+'-access']){
 									actionAccessCountDate[property][property2] = actionAccess[property+'-access'][property2].length;
-									console.log(property+property2+actionAccess[property+'-access'][property2].length);
+									//console.log(property+property2+actionAccess[property+'-access'][property2].length);
 								}
 
 							}
