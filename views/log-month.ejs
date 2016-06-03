@@ -309,7 +309,7 @@ $(document).ready(function(){
              var yPrice = 0;
              var totalData = 0;
              var totalPrice = 0;
-             for(var i=1; i<=24; i++){
+             for(var i=0; i<=23; i++){
                  if(actionAccessCountDate[action]&& typeof actionAccessCountDate[action][i+""]!='undefined'){
                    console.log('action'+action+" "+actionAccessCountDate[action]);
                    yVal = actionAccessCountDate[action][i+""];
@@ -349,11 +349,9 @@ $(document).ready(function(){
             var yVal = 0; var yPrice = 0;
             var totalData = 0;
             var totalPrice = 0;
-            for(var i=1; i<=24; i++){
+            for(var i=0; i<=23; i++){
                 if(accessCountDate[i+""]!=undefined){
                     yVal = accessCountDate[i+""];
-
-
                 }
                 else {
                     yVal = 0;
@@ -386,7 +384,7 @@ $(document).ready(function(){
 
    <%
    if(typeof action2 != 'undefined'){
-     color = ["#46BFBD", "#FDB45C", "#212121", "#64af9c", "#6b1f3c", "#127690", "#a2798f", "#008b8b", "#99ccff", "#cc99ff", "#9feaae", "#40d65d", "#65ada2", "#5ee4bb", "#9ffff7", "#2412b4", "#34d491", "#da6665", "#f3d681", "#b9b9b9", "#b9b9b9", "#ffae1a", "#2137ff", "#d8941a", "#d8941a", "#ff2a1a", "#e6b3e6", "#e6b3e6", "#a8e4f0", "#6ef79c", "#5cf53d", "#d6d65c", "#adb87a", "#d6995c", "#f76e6e", "#f08a75", "#eb9947", "#ffdd33", "#cccc00", "#99eb47", "#75f075", "#85e0b3", "#33ffdd","#998cd9",];
+     color = ["#46BFBD", "#FDB45C", "#212121", "#64af9c", "#6b1f3c", "#127690", "#a2798f", "#008b8b", "#99ccff", "#cc99ff", "#9feaae", "#40d65d", "#65ada2", "#5ee4bb", "#9ffff7", "#2412b4", "#34d491", "#da6665", "#f3d681", "#b9b9b9", "#b9b9b9", "#ffae1a", "#2137ff", "#d8941a", "#d8941a", "#ff2a1a", "#e6b3e6", "#e6b3e6", "#a8e4f0", "#6ef79c", "#5cf53d", "#d6d65c", "#adb87a", "#d6995c", "#f76e6e", "#f08a75", "#eb9947", "#ffdd33", "#cccc00", "#99eb47", "#75f075", "#85e0b3", "#33ffdd","#998cd9"];
    %>
 
     data = {
