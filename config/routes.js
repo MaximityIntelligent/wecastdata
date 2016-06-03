@@ -42,6 +42,10 @@ module.exports.routes = {
   '/data': {
     controller: 'LogController',
     action: 'logView'
+  },
+  '/checkServerUp': {
+    controller: 'LogController',
+    action: 'checkServerUp'
   }
 
   /***************************************************************************
