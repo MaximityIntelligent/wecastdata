@@ -24,7 +24,7 @@ module.exports = {
 		var totalPrize1Winner;
 		var totalPrize2Winner;
 		user.find({credit: {'>=': 18; '<': 38}}).exec(function(err, prize1Winners){
-			totalPrize1Winner = prizeWinners.length;
+			totalPrize1Winner = prize1Winners.length;
 			user.find({credit: {'>=': 38}}).exec(function(err, prize2Winners){
 				totalPrize2Winner = prize2Winners.length;
 				console.log(totalPrize1Winner+ " "+totalPrize2Winner);
