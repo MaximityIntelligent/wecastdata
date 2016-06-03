@@ -428,12 +428,11 @@ $(document).ready(function(){
       $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
         if(data.server == "up"){
           $("#serverStatus").empty();
-          $("#serverStatus").append("<img src='images/up.png'/>");
-          alert('success');
+          $("#serverStatus").append("<img src='/images/up.png'/>");
         }
         else{
           $("#serverStatus").empty();
-          $("#serverStatus").append("<img src='images/up.png'/>");
+          $("#serverStatus").append("<img src='/images/down.png'/>");
         }
 
       }).fail(function(){
