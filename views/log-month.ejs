@@ -422,7 +422,7 @@ $(document).ready(function(){
     }
     %>
     setTimeout(function(){
-      $.ajax("http://wecast.ibeacon-macau.com/").done(function(){
+      $.ajax("http://wecast.ibeacon-macau.com/", {dataType: 'html'}).done(function(){
         alert('success');
       }).fail(function(){
         alert('error');
