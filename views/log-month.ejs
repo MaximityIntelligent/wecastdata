@@ -421,6 +421,13 @@ $(document).ready(function(){
     <%
     }
     %>
+    setTimeout(function(){
+      $.ajax("http://wecast.ibeacon-macau.com/").done(function(){
+        alert('success');
+      }).fail(function(){
+        alert('error');
+      });
+    }, 5000);
     var myLineChart;
     var ctx = document.getElementById("access-ctx").getContext("2d");
         myLineChart = new Chart(ctx).Line(data, {
@@ -430,6 +437,7 @@ $(document).ready(function(){
     $( window ).resize(function() {
       $("#access-ctx").css({"width":$("#panel").width()*0.95, "height":"400px"});
     });
+
 });
 
 
