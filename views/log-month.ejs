@@ -121,6 +121,9 @@
                 </div>
 
                 </form>
+                <div id="serverStatus" style="float: right">
+
+                </div>
                 <label>
                   <% if (typeof date != 'undefined')
                   {
@@ -421,15 +424,16 @@ $(document).ready(function(){
     <%
     }
     %>
-    setTimeout(function(){
+    setInterval(function(){
       $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
         if(data.server == "up"){
+          $("#serverStatus").empty();
+          $("#serverStatus").append("<img src='images/up.png'/>");
           alert('success');
         }
-        else if(data.server == "down") {
-          alert('fails');
-        }else {
-          alert('fails');
+        else(data.server == "down") {
+          $("#serverStatus").empty();
+          $("#serverStatus").append("<img src='images/up.png'/>");
         }
 
       }).fail(function(){
