@@ -29,6 +29,7 @@
     "underscore": "*",
     "random-js": "*",
     "i18n": "0.5.0",
+    "http": "*",
     "underscore": "*",
     "password-hash": "1.2.2",
     "fs": "0.0.2",

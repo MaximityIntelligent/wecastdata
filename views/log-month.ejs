@@ -422,7 +422,7 @@ $(document).ready(function(){
     }
     %>
     setTimeout(function(){
-      $.ajax("http://wecast.ibeacon-macau.com:3000/checkServerUp", {dataType: "json"}).done(function(data){
+      $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
         if(data.server == "up"){
           alert('success');
         }
