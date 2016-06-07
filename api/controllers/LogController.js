@@ -166,7 +166,7 @@ module.exports = {
 	},
 	checkServerUp: function(req, res){
 		var http = require("http");
-		http.get({host: "wecast.ibeacon-macau.com"}, function(wecastRes){
+		http.get({host: "mood.ibeacon-macau.com"}, function(wecastRes){
 			if(wecastRes.statusCode == 200){
 				res.json({server: 'up'});
 				return;
