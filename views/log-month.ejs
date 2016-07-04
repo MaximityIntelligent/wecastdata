@@ -10,32 +10,33 @@
 <div class="container content">
     <div class="row">
         <div id="panel" class="panel panel-dashboard full-width">
-            <div class="panel-heading panel-heading-cbj">点击量</div>
+            <div class="panel-heading panel-heading-cbj">點擊量</div>
               <div class="panel-body">
                 <form class="form-inline" method="post"  name="form" action="/data/access">
                 <div class="panel-elem">
                 <div class="form-group">
-                    <label>点击对象</label>
+                    <label>點擊對象</label>
                     <div class="form-group">
-                    微信朋友分享次數<input type="checkbox" name="action2" value="share_friend"  />&nbsp;
-                    微信朋友圈分享次數<input type="checkbox" name="action2" value="share_timeline"  />&nbsp;
-                    分享按鈕<input type="checkbox" name="action2" value="share_button"  />&nbsp;
-                    活動詳情<input type="checkbox" name="action2" value="about_easywash"  />&nbsp;
-                    活動規則<input type="checkbox" name="action2" value="rules"  />&nbsp;
-                    地址MAP<input type="checkbox" name="action2" value="address"  />&nbsp;
-                    立即前往<input type="checkbox" name="action2" value="google_map"  />&nbsp;
-                    CALL客服<input type="checkbox" name="action2" value="tel"  />&nbsp;
-                    獎品1詳情<input type="checkbox" name="action2" value="prize1_page"  />&nbsp;
-                    獎品2詳情<input type="checkbox" name="action2" value="prize2_page"  />&nbsp;
-                    獎品1成功領獎<input type="checkbox" name="action2" value="redeem_prize1"  />&nbsp;
-                    獎品2成功領獎<input type="checkbox" name="action2" value="redeem_prize2"  />&nbsp;
-                    繼續儲泡<input type="checkbox" name="action2" value="continue_collect"  />&nbsp;
-                    去洗車<input type="checkbox" name="action2" value="go_wash"  />&nbsp;
+                    全選<input name="clickAll" id="clickAll" type="checkbox">&nbsp;
+                    微信朋友分享次數<input type="checkbox" name="action2" id="share_friend" value="share_friend"  />&nbsp;
+                    微信朋友圈分享次數<input type="checkbox" name="action2" id="share_timeline" value="share_timeline"  />&nbsp;
+                    分享按鈕<input type="checkbox" name="action2" id="share_button" value="share_button"  />&nbsp;
+                    <!-- 活動詳情<input type="checkbox" name="action2" value="about_easywash"  />&nbsp; -->
+                    活動規則<input type="checkbox" name="action2" id="rules" value="rules"  />&nbsp;
+                    <!-- 地址MAP<input type="checkbox" name="action2" value="address"  />&nbsp; -->
+                    立即前往<input type="checkbox" name="action2" id="google_map" value="google_map"  />&nbsp;
+                    CALL客服<input type="checkbox" name="action2" id="tel" value="tel"  />&nbsp;
+                    <!-- 獎品1詳情<input type="checkbox" name="action2" value="prize1_page"  />&nbsp;
+                    獎品2詳情<input type="checkbox" name="action2" value="prize2_page"  />&nbsp; -->
+                    獎品1成功領獎<input type="checkbox" name="action2" id="redeem_prize1" value="redeem_prize1"  />&nbsp;
+                    獎品2成功領獎<input type="checkbox" name="action2" id="redeem_prize2" value="redeem_prize2"  />&nbsp;
+                    繼續儲泡<input type="checkbox" name="action2" id="continue_collect" value="continue_collect"  />&nbsp;
+                    <!-- 去洗車<input type="checkbox" name="action2" value="go_wash"  />&nbsp;
                     獎品1返回<input type="checkbox" name="action2" value="prize1_return"  />&nbsp;
                     獎品2返回<input type="checkbox" name="action2" value="prize2_return"  />&nbsp;
-                    活動詳情返回<input type="checkbox" name="action2" value="about_easywash_return"  />&nbsp;
-                    Thank You頁面<input type="checkbox" name="action2" value="thankyou_page"  />&nbsp;
-                    分享朋友總數<input type="checkbox" name="action2" value="total_share_friends"  />&nbsp;
+                    活動詳情返回<input type="checkbox" name="action2" value="about_easywash_return"  />&nbsp; -->
+                    Thank You頁面<input type="checkbox" name="action2" id="thankyou_page" value="thankyou_page"  />&nbsp;
+                    分享朋友總數<input type="checkbox" name="action2" id="total_share_friends" value="total_share_friends"  />&nbsp;
                     </div>
 
                     <!--
@@ -168,6 +169,12 @@
                     <tr><td><span>&nbsp;&nbsp;&nbsp;&nbsp;</span> 獎品2得獎</td>
                     <td><%=totalPrize2Winner%></td>
                     </tr>
+                    <tr><td><span>&nbsp;&nbsp;&nbsp;&nbsp;</span> 投票1</td>
+                    <td><%=vote1%></td>
+                    </tr>
+                    <tr><td><span>&nbsp;&nbsp;&nbsp;&nbsp;</span> 投票2</td>
+                    <td><%=vote2%></td>
+                    </tr>
 
 
                   <%
@@ -229,6 +236,13 @@ $(document).ready(function(){
 
     $("#access-ctx").css({"width":$("#panel").width()*0.95, "height":"400px"});
     $("#date").daterangepicker({singleDatePicker: true});
+    $("#clickAll").click(function() {
+       if($("#clickAll").prop("checked")) {
+         $("input[name='action2']").prop("checked", true);
+       } else {
+         $("input[name='action2']").prop("checked", false);          
+       }
+    });
     var yData = []; var yLabel = [];
     yAction = {};
 
@@ -237,7 +251,7 @@ $(document).ready(function(){
     for (var i = 0; i< action2.length; i++){
     %>
     yAction["<%=action2[i]%>"] = [];
-
+    $("#"+"<%=action2[i]%>").prop('checked', true);
     <%
   }}
     %>
@@ -300,7 +314,7 @@ $(document).ready(function(){
      <%
              }
      %>
-
+          
 
 
     <%
@@ -325,7 +339,7 @@ $(document).ready(function(){
                    yVal = actionAccessCountDate[action][i+""];
                  }
                  else {
-                   console.log('else');
+                   //console.log('else');
                      yVal = 0;
 
                  }
@@ -341,7 +355,7 @@ $(document).ready(function(){
      <%
              }
      %>
-
+          $("#date").val("<%=date%>");
 
 
     <%

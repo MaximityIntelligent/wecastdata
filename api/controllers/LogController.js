@@ -23,13 +23,16 @@ module.exports = {
 		//console.log(action2);
 		var totalPrize1Winner;
 		var totalPrize2Winner;
-		user.find({credit: {'>': 79}}).exec(function(err, prize1Winners){
+		user.find({credit: {'>=': 15}}).exec(function(err, prize1Winners){
 			totalPrize1Winner = prize1Winners.length;
-			user.find({credit: {'>': 79}}).exec(function(err, prize2Winners){
+			user.find({credit: {'>=': 30}}).exec(function(err, prize2Winners){
 				totalPrize2Winner = prize2Winners.length;
 				console.log(totalPrize1Winner+ " "+totalPrize2Winner);
 
-				user.find().exec(function(err, users){
+				user.count().exec(function(err, users){
+
+					user.count({vote:'vote1'}).exec(function (err, vote1) {
+					user.count({vote:'vote2'}).exec(function (err, vote2) {
 
 						if(buttonAction=="accessMonth"){
 							var year = req.param("year");
@@ -50,7 +53,9 @@ module.exports = {
 									});
 									var actionAccessCountMonth = {};
 									var actionAccessTotal = {};
-									actions = ['share_friend','share_timeline','share_button','about_easywash','rules','address','google_map','tel','prize1_page','prize2_page','redeem_prize1','redeem_prize2','continue_collect','go_wash','prize1_return','prize2_return','about_easywash_return','thankyou_page', 'total_share_friends'];
+									var noActions = ['about_easywash','prize1_page','prize2_page','go_wash','prize1_return','prize2_return','about_easywash_return']
+									actions = ['share_friend','share_timeline','share_button','rules','address','google_map','tel','redeem_prize1','redeem_prize2','continue_collect','thankyou_page', 'total_share_friends'];
+									
 									for (var j=0; j< actions.length; j++){
 										actionAccessTotal[actions[j]] = 0;
 										actionAccessCountMonth[actions[j]] = {};
@@ -85,9 +90,10 @@ module.exports = {
 									if(!action2){
 										action2 = [];
 									}
-									res.view('log-month', {accessCountMonth: accessCountMonth, totalAccess: totalAccess, totalUser: users.length, action: actionName, year: year, month: month, action2: action2, actionAccessCountMonth: actionAccessCountMonth, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner});
+									console.log({accessCountMonth: accessCountMonth, totalAccess: totalAccess, totalUser: users, action: actionName, year: year, month: month, action2: action2, actionAccessCountMonth: actionAccessCountMonth, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2});
+									res.view('log-month', {accessCountMonth: accessCountMonth, totalAccess: totalAccess, totalUser: users, action: actionName, year: year, month: month, action2: action2, actionAccessCountMonth: actionAccessCountMonth, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2});
 							});
-					}else if(buttonAction=="accessDate"){
+						}else if(buttonAction=="accessDate"){
 							var dateStr = req.param('date');
 							var accessDateFrom = moment(dateStr, "MM/DD/YYYY").startOf('day').toDate();
 							var accessDateTo = moment(dateStr, "MM/DD/YYYY").endOf('day').toDate();
@@ -102,7 +108,8 @@ module.exports = {
 									});
 									var actionAccessCountDate = {};
 									var actionAccessTotal = {};
-									actions = ['share_friend','share_timeline','share_button','about_easywash','rules','address','google_map','tel','prize1_page','prize2_page','redeem_prize1','redeem_prize2','continue_collect','go_wash','prize1_return','prize2_return','about_easywash_return', 'thankyou_page', 'total_share_friends'];
+									var noActions = ['about_easywash','prize1_page','prize2_page','go_wash','prize1_return','prize2_return','about_easywash_return']
+									actions = ['share_friend','share_timeline','share_button','rules','address','google_map','tel','vote','show_redeem','redeem_prize1','redeem_prize2','continue_collect','thankyou_page', 'total_share_friends'];
 									for (var j=0; j< actions.length; j++){
 										actionAccessTotal[actions[j]] = 0;
 										actionAccessCountDate[actions[j]] = {};
@@ -134,11 +141,15 @@ module.exports = {
 									if(!action2){
 										action2 = [];
 									}
-									res.view('log-month', {accessCountDate: accessCountDate, totalAccess: totalAccess, totalUser: users.length, date: dateStr, action2: action2, actionAccessCountDate: actionAccessCountDate, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner });
+									console.log({accessCountDate: accessCountDate, totalAccess: totalAccess, totalUser: users, date: dateStr, action2: action2, actionAccessCountDate: actionAccessCountDate, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2 });
+									res.view('log-month', {accessCountDate: accessCountDate, totalAccess: totalAccess, totalUser: users, date: dateStr, action2: action2, actionAccessCountDate: actionAccessCountDate, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2 });
 							});
-					}
+						}
 
-				})
+					});
+					});
+
+				});
 
 
 
@@ -166,7 +177,7 @@ module.exports = {
 	},
 	checkServerUp: function(req, res){
 		var http = require("http");
-		http.get({host: "mood.ibeacon-macau.com"}, function(wecastRes){
+		http.get({host: "lb.ibeacon-macau.com", path:"/api/checkAlive"}, function(wecastRes){
 			if(wecastRes.statusCode == 200){
 				res.json({server: 'up'});
 				return;
