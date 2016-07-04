@@ -90,7 +90,6 @@ module.exports = {
 									if(!action2){
 										action2 = [];
 									}
-									console.log({accessCountMonth: accessCountMonth, totalAccess: totalAccess, totalUser: users, action: actionName, year: year, month: month, action2: action2, actionAccessCountMonth: actionAccessCountMonth, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2});
 									res.view('log-month', {accessCountMonth: accessCountMonth, totalAccess: totalAccess, totalUser: users, action: actionName, year: year, month: month, action2: action2, actionAccessCountMonth: actionAccessCountMonth, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2});
 							});
 						}else if(buttonAction=="accessDate"){
@@ -141,7 +140,7 @@ module.exports = {
 									if(!action2){
 										action2 = [];
 									}
-									console.log({accessCountDate: accessCountDate, totalAccess: totalAccess, totalUser: users, date: dateStr, action2: action2, actionAccessCountDate: actionAccessCountDate, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2 });
+
 									res.view('log-month', {accessCountDate: accessCountDate, totalAccess: totalAccess, totalUser: users, date: dateStr, action2: action2, actionAccessCountDate: actionAccessCountDate, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2 });
 							});
 						}
