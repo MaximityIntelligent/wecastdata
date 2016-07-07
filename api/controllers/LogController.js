@@ -173,18 +173,19 @@ module.exports = {
 	logView: function(req, res){
 
 		res.view('log-month');
-	},
-	checkServerUp: function(req, res){
-		var http = require("http");
-		http.get({host: "lb.ibeacon-macau.com", path:"/api/checkAlive"}, function(wecastRes){
-			if(wecastRes.statusCode == 200){
-				res.json({server: 'up'});
-				return;
-			}else{
-				res.json({server: 'down'});
-				return;
-			}
-
-		})
 	}
+	// ,
+	// checkServerUp: function(req, res){
+	// 	var http = require("http");
+	// 	http.get({host: "lb.ibeacon-macau.com", path:"/api/checkAlive"}, function(wecastRes){
+	// 		if(wecastRes.statusCode == 200){
+	// 			res.json({server: 'up'});
+	// 			return;
+	// 		}else{
+	// 			res.json({server: 'down'});
+	// 			return;
+	// 		}
+
+	// 	})
+	// }
 };
