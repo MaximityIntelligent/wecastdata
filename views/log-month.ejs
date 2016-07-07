@@ -445,21 +445,21 @@ $(document).ready(function(){
     <%
     }
     %>
-    setInterval(function(){
-      $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
-        if(data.server == "up"){
-          $("#serverStatus").empty();
-          $("#serverStatus").append("<img src='/images/up.png' width='150px'/>");
-        }
-        else{
-          $("#serverStatus").empty();
-          $("#serverStatus").append("<img src='/images/down.png' width='150px'/>");
-        }
+    // setInterval(function(){
+    //   $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
+    //     if(data.server == "up"){
+    //       $("#serverStatus").empty();
+    //       $("#serverStatus").append("<img src='/images/up.png' width='150px'/>");
+    //     }
+    //     else{
+    //       $("#serverStatus").empty();
+    //       $("#serverStatus").append("<img src='/images/down.png' width='150px'/>");
+    //     }
 
-      }).fail(function(){
-        //alert('error');
-      });
-    }, 5000);
+    //   }).fail(function(){
+    //     //alert('error');
+    //   });
+    // }, 5000);
     var myLineChart;
     var ctx = document.getElementById("access-ctx").getContext("2d");
         myLineChart = new Chart(ctx).Line(data, {
