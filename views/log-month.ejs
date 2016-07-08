@@ -445,6 +445,9 @@ $(document).ready(function(){
     <%
     }
     %>
+    setInterval(function(){
+      window.location.href = window.location.href;
+    }, 60000);
     // setInterval(function(){
     //   $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
     //     if(data.server == "up"){
