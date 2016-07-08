@@ -69,7 +69,8 @@
                 <div class="form-group">
                     <label>年份</label>
                     <select class="form-control" id="year" name="year">
-                        <option value="2016" selected>2016</option>
+                        <option value="2016">2016</option>
+                        <option value="2015">2015</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -280,7 +281,7 @@ $(document).ready(function(){
     <%
             }
     %>
-            $("#buttonAction").attr("value", "accessMonth");
+
     <%
         }
     %>
@@ -334,7 +335,7 @@ $(document).ready(function(){
              var totalPrice = 0;
              for(var i=0; i<=23; i++){
                  if(actionAccessCountDate[action]&& typeof actionAccessCountDate[action][i+""]!='undefined'){
-                   //console.log('action'+action+" "+actionAccessCountDate[action]);
+                   console.log('action'+action+" "+actionAccessCountDate[action]);
                    yVal = actionAccessCountDate[action][i+""];
                  }
                  else {
@@ -388,7 +389,7 @@ $(document).ready(function(){
     <%
         }
         %>
-        $("#buttonAction").attr("value", "accessDate");  
+
     <%
     }
   }
@@ -444,26 +445,21 @@ $(document).ready(function(){
     <%
     }
     %>
-    // setInterval(function(){
+    setInterval(function(){
+      $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
+        if(data.server == "up"){
+          $("#serverStatus").empty();
+          $("#serverStatus").append("<img src='/images/up.png' width='150px'/>");
+        }
+        else{
+          $("#serverStatus").empty();
+          $("#serverStatus").append("<img src='/images/down.png' width='150px'/>");
+        }
 
-    //     document.forms['form'].submit();
-
-    // }, 60000);
-    // setInterval(function(){
-    //   $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
-    //     if(data.server == "up"){
-    //       $("#serverStatus").empty();
-    //       $("#serverStatus").append("<img src='/images/up.png' width='150px'/>");
-    //     }
-    //     else{
-    //       $("#serverStatus").empty();
-    //       $("#serverStatus").append("<img src='/images/down.png' width='150px'/>");
-    //     }
-
-    //   }).fail(function(){
-    //     //alert('error');
-    //   });
-    // }, 5000);
+      }).fail(function(){
+        //alert('error');
+      });
+    }, 5000);
     var myLineChart;
     var ctx = document.getElementById("access-ctx").getContext("2d");
         myLineChart = new Chart(ctx).Line(data, {
