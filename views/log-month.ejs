@@ -281,12 +281,6 @@ $(document).ready(function(){
             }
     %>
             $("#buttonAction").attr("value", "accessMonth");
-            $("year").filter(function() {
-                return $(this).text() == "<%=year%>"; 
-            }).prop('selected', true);
-            $("month").filter(function() {
-                return $(this).text() == "<%=month%>"; 
-            }).prop('selected', true);
     <%
         }
     %>
@@ -450,11 +444,11 @@ $(document).ready(function(){
     <%
     }
     %>
-    setInterval(function(){
+    // setInterval(function(){
 
-        document.forms['form'].submit();
+    //     document.forms['form'].submit();
 
-    }, 60000);
+    // }, 60000);
     // setInterval(function(){
     //   $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
     //     if(data.server == "up"){
