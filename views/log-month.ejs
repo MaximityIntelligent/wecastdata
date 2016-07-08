@@ -69,8 +69,7 @@
                 <div class="form-group">
                     <label>年份</label>
                     <select class="form-control" id="year" name="year">
-                        <option value="2016">2016</option>
-                        <option value="2015">2015</option>
+                        <option value="2016" selected>2016</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -281,7 +280,13 @@ $(document).ready(function(){
     <%
             }
     %>
-
+            $("#buttonAction").attr("value", "accessMonth");
+            $("year").filter(function() {
+                return $(this).text() == "<%=year%>"; 
+            }).prop('selected', true);
+            $("month").filter(function() {
+                return $(this).text() == "<%=month%>"; 
+            }).prop('selected', true);
     <%
         }
     %>
@@ -389,7 +394,7 @@ $(document).ready(function(){
     <%
         }
         %>
-
+        $("#buttonAction").attr("value", "accessDate");  
     <%
     }
   }
@@ -446,22 +451,9 @@ $(document).ready(function(){
     }
     %>
     setInterval(function(){
-    <% if(typeof accessCountMonth != "undefined" || typeof accessCountDate != "undefined"){
 
-        if(typeof accessCountMonth != 'undefined'){
-    %>
-          $("#buttonAction").attr("value", "accessMonth");
-          document.forms['form'].submit();
-    <%
-        }
-        if(typeof accessCountDate != 'undefined'){
-    %>
-        $("#buttonAction").attr("value", "accessDate");
         document.forms['form'].submit();
-    <%
-        }
-       }
-    %>
+
     }, 60000);
     // setInterval(function(){
     //   $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
