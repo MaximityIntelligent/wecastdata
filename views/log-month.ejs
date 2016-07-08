@@ -335,7 +335,7 @@ $(document).ready(function(){
              var totalPrice = 0;
              for(var i=0; i<=23; i++){
                  if(actionAccessCountDate[action]&& typeof actionAccessCountDate[action][i+""]!='undefined'){
-                   console.log('action'+action+" "+actionAccessCountDate[action]);
+                   //console.log('action'+action+" "+actionAccessCountDate[action]);
                    yVal = actionAccessCountDate[action][i+""];
                  }
                  else {
@@ -446,7 +446,22 @@ $(document).ready(function(){
     }
     %>
     setInterval(function(){
-      window.location.href = window.location.href;
+    <% if(typeof accessCountMonth != "undefined" || typeof accessCountDate != "undefined"){
+
+        if(typeof accessCountMonth != 'undefined'){
+    %>
+          $("#buttonAction").attr("value", "accessMonth");
+          document.forms['form'].submit();
+    <%
+        }
+        if(typeof accessCountDate != 'undefined'){
+    %>
+        $("#buttonAction").attr("value", "accessDate");
+        document.forms['form'].submit();
+    <%
+        }
+       }
+    %>
     }, 60000);
     // setInterval(function(){
     //   $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
