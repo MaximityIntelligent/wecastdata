@@ -17,7 +17,9 @@
                 <div class="form-group">
                     <label>點擊對象</label>
                     <div class="form-group">
+                    累加<input name="accumulated" id="accumulated" type="checkbox">&nbsp;
                     全選<input name="clickAll" id="clickAll" type="checkbox">&nbsp;
+                    註冊<input type="checkbox" name="action2" id="regist" value="regist"  />&nbsp;
                     微信朋友分享次數<input type="checkbox" name="action2" id="share_friend" value="share_friend"  />&nbsp;
                     微信朋友圈分享次數<input type="checkbox" name="action2" id="share_timeline" value="share_timeline"  />&nbsp;
                     分享按鈕<input type="checkbox" name="action2" id="share_button" value="share_button"  />&nbsp;
@@ -110,14 +112,14 @@
                 </div>
 
                 <input type="hidden" name="buttonAction" id="buttonAction" class="btn btn-default" value=""/>
-                <input type="button" id="accessMonth" class="btn btn-default" value="月统计"/>
+                <input type="button" id="accessMonth" class="btn btn-default" value="月統計"/>
 
                 <div class="pull-right">
                 <div class="form-group">
                     <label>日期</label>
                     <input type="text" class="form-control" id="date" name="date">
                 </div>
-                <input type="button" class="btn btn-default" id="accessDate" value="日统计">
+                <input type="button" class="btn btn-default" id="accessDate" value="日統計">
                 </div>
                 </div>
 
@@ -145,7 +147,7 @@
                   <label>
                     <%if (typeof action != 'undefined'){
                     %>
-                    <%=action%>点击
+                    <%=action%>點擊
                     <%
                     }
                     %>
@@ -184,6 +186,7 @@
                   <% if(typeof action2 != 'undefined' ){
                     color = ["#46BFBD", "#FDB45C", "#212121", "#64af9c", "#6b1f3c", "#127690", "#a2798f", "#008b8b", "#99ccff", "#cc99ff", "#9feaae", "#40d65d", "#65ada2", "#5ee4bb", "#9ffff7", "#2412b4", "#34d491", "#da6665", "#f3d681", "#b9b9b9", "#b9b9b9", "#ffae1a", "#2137ff", "#d8941a", "#d8941a", "#ff2a1a", "#e6b3e6", "#e6b3e6", "#a8e4f0", "#6ef79c", "#5cf53d", "#d6d65c", "#adb87a", "#d6995c", "#f76e6e", "#f08a75", "#eb9947", "#ffdd33", "#cccc00", "#99eb47", "#75f075", "#85e0b3", "#33ffdd","#998cd9",];
                     var actionMap = {};
+                    actionMap['regist'] = "註冊" ;
                     actionMap['share_friend'] = "微信朋友分享次數" ;
                     actionMap['share_timeline'] = "微信朋友圈分享次數" ;
                     actionMap['share_button'] = "分享按鈕" ;
@@ -247,6 +250,13 @@ $(document).ready(function(){
     yAction = {};
 
     <%
+      if (typeof accumulated != "undefined") {
+    %>
+        $("#accumulated").prop("checked", true);
+    <%
+      }
+    %>
+    <%
     if(typeof action2 != 'undefined'){
     for (var i = 0; i< action2.length; i++){
     %>
@@ -306,10 +316,17 @@ $(document).ready(function(){
                  }
                  totalData += yVal;
 
+                 if (accumulated == 'on') {
      %>
-                 yAction["<%=action%>"].push(<%=yVal%>);
-
+                    yAction["<%=action%>"].push(<%=totalData%>);
+     <%
+                  } else {
+     %>
+                    yAction["<%=action%>"].push(<%=yVal%>);
                  //alert('227');
+      <%          
+                  }
+      %>
 
      <%
              }
@@ -335,7 +352,7 @@ $(document).ready(function(){
              var totalPrice = 0;
              for(var i=0; i<=23; i++){
                  if(actionAccessCountDate[action]&& typeof actionAccessCountDate[action][i+""]!='undefined'){
-                   console.log('action'+action+" "+actionAccessCountDate[action]);
+                   //console.log('action'+action+" "+actionAccessCountDate[action]);
                    yVal = actionAccessCountDate[action][i+""];
                  }
                  else {
@@ -347,10 +364,17 @@ $(document).ready(function(){
 
                   //yVal = 0;
                   //console.log(yVal);
+                 if (accumulated == 'on') {
      %>
-                 yAction["<%=action%>"].push(<%=yVal%>);
-
+                 yAction["<%=action%>"].push(<%=totalData%>);
+     <%
+                  } else {
+     %>
+                  yAction["<%=action%>"].push(<%=yVal%>);
                  //alert('227');
+     <%          
+                  }
+      %>              
 
      <%
              }
@@ -413,6 +437,8 @@ $(document).ready(function(){
 
     data = {
         labels: yLabel,
+        xAxisID: "時間",
+        yAxisID: "次數",
         datasets: [
 
             <%
@@ -426,6 +452,7 @@ $(document).ready(function(){
                 pointStrokeColor: "#fff",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(220,220,220,1)",
+
                 data: yAction["<%=action2[i]%>"]
             }
             <% if(i!=action2.length-1){
@@ -445,21 +472,21 @@ $(document).ready(function(){
     <%
     }
     %>
-    setInterval(function(){
-      $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
-        if(data.server == "up"){
-          $("#serverStatus").empty();
-          $("#serverStatus").append("<img src='/images/up.png' width='150px'/>");
-        }
-        else{
-          $("#serverStatus").empty();
-          $("#serverStatus").append("<img src='/images/down.png' width='150px'/>");
-        }
+    // setInterval(function(){
+    //   $.ajax("/checkServerUp", {dataType: "json"}).done(function(data){
+    //     if(data.server == "up"){
+    //       $("#serverStatus").empty();
+    //       $("#serverStatus").append("<img src='/images/up.png' width='150px'/>");
+    //     }
+    //     else{
+    //       $("#serverStatus").empty();
+    //       $("#serverStatus").append("<img src='/images/down.png' width='150px'/>");
+    //     }
 
-      }).fail(function(){
-        //alert('error');
-      });
-    }, 5000);
+    //   }).fail(function(){
+    //     //alert('error');
+    //   });
+    // }, 5000);
     var myLineChart;
     var ctx = document.getElementById("access-ctx").getContext("2d");
         myLineChart = new Chart(ctx).Line(data, {
