@@ -57,7 +57,7 @@ module.exports = {
 									var actionAccessCountMonth = {};
 									var actionAccessTotal = {};
 									var noActions = ['about_easywash','prize1_page','prize2_page','go_wash','prize1_return','prize2_return','about_easywash_return']
-									actions = ['regist','share_friend','share_timeline','share_button','rules','address','google_map','tel','redeem_prize1','redeem_prize2','continue_collect','thankyou_page', 'total_share_friends'];
+									actions = ['regist','share_friend','share_timeline','share_button','rules','address','google_map','tel','redeem_prize1','redeem_prize2','continue_collect','thankyou_page', 'total_share_friends', 'redeem_vote'];
 									
 									for (var j=0; j< actions.length; j++){
 										actionAccessTotal[actions[j]] = 0;
@@ -115,7 +115,7 @@ module.exports = {
 									var actionAccessCountDate = {};
 									var actionAccessTotal = {};
 									var noActions = ['about_easywash','prize1_page','prize2_page','go_wash','prize1_return','prize2_return','about_easywash_return']
-									actions = ['regist','share_friend','share_timeline','share_button','rules','address','google_map','tel','vote','show_redeem','redeem_prize1','redeem_prize2','continue_collect','thankyou_page', 'total_share_friends'];
+									actions = ['regist','share_friend','share_timeline','share_button','rules','address','google_map','tel','vote','show_redeem','redeem_prize1','redeem_prize2','continue_collect','thankyou_page', 'total_share_friends', 'redeem_vote'];
 									for (var j=0; j< actions.length; j++){
 										actionAccessTotal[actions[j]] = 0;
 										actionAccessCountDate[actions[j]] = {};
