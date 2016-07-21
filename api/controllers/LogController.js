@@ -31,7 +31,11 @@ module.exports = {
 		// 		console.log(totalPrize1Winner+ " "+totalPrize2Winner);
 
 				user.count().exec(function(err, users){
+					if (err) {
+						console.log(err);
+					}
 					console.log(users);
+					console.log(buttonAction);
 					// user.count({vote:'vote1'}).exec(function (err, vote1) {
 					// user.count({vote:'vote2'}).exec(function (err, vote2) {
 						// console.log(vote1+" : "+ vote2);
