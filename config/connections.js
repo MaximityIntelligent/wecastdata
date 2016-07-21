@@ -38,7 +38,7 @@ module.exports.connections = {
   },
   mongo_local: {
       adapter: 'sails-mongo',
-      url: 'mongodb://uefaUser:uefaUser2016@dds-wz9a31bd644279341.mongodb.rds.aliyuncs.com:3717,dds-wz9a31bd644279342.mongodb.rds.aliyuncs.com:3717/uefa?replicaSet=mgset-1382405'
+      url: 'mongodb://uefaUser:uefaUser2016@dds-wz9a31bd644279341.mongodb.rds.aliyuncs.com:3717,dds-wz9a31bd644279342.mongodb.rds.aliyuncs.com:3717/uefa?replicaSet=mgset-1382405&connectTimeoutMS=10000&maxIdleTimeMS=10000'
       // host: 'ds021689.mlab.com',
       // port: 21689,
       // user: 'wecast',
