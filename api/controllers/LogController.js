@@ -50,8 +50,9 @@ module.exports = {
 							if (action2) {
 								option.action = action2;
 							}
-							log.find(option).exec(function(err, accessArr){
-								    console.log("accessArr");
+
+							log.find(option, { 'action': 1, 'createdAt': 1}).exec(function(err, accessArr){
+								    console.log(accessArr);
 									if(err){
 											res.serverError(err);
 											return;
