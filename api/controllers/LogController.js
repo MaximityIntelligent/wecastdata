@@ -52,7 +52,7 @@ module.exports = {
 							}
 
 							log.find({ where: option, select:['action', 'createdAt']}).exec(function(err, accessArr){
-								    console.log(accessArr);
+								    console.log("accessArr");
 									if(err){
 											res.serverError(err);
 											return;
