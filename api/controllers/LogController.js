@@ -51,7 +51,7 @@ module.exports = {
 								option.action = action2;
 							}
 
-							log.find(option, { 'action': 1, 'createdAt': 1}).exec(function(err, accessArr){
+							log.find({ where: option, select:['action', 'createdAt']}).exec(function(err, accessArr){
 								    console.log(accessArr);
 									if(err){
 											res.serverError(err);
