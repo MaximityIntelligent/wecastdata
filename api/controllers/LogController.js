@@ -32,9 +32,9 @@ module.exports = {
 
 				user.count().exec(function(err, users){
 
-					user.count({vote:'vote1'}).exec(function (err, vote1) {
-					user.count({vote:'vote2'}).exec(function (err, vote2) {
-						console.log(vote1+" : "+ vote2);
+					// user.count({vote:'vote1'}).exec(function (err, vote1) {
+					// user.count({vote:'vote2'}).exec(function (err, vote2) {
+						// console.log(vote1+" : "+ vote2);
 						if(buttonAction=="accessMonth"){
 							var year = req.param("year");
 							var month = req.param("month");
@@ -95,7 +95,7 @@ module.exports = {
 										action2 = [];
 									}
 									console.log({accessCountMonth: accessCountMonth, year: year, month: month, actionAccessCountMonth: actionAccessCountMonth.length, accumulated: accumulated});
-									res.view('log-month', {accessCountMonth: accessCountMonth, totalAccess: totalAccess, totalUser: users, action: actionName, year: year, month: month, action2: action2, actionAccessCountMonth: actionAccessCountMonth, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2, accumulated: accumulated});
+									res.view('log-month', {accessCountMonth: accessCountMonth, totalAccess: totalAccess, totalUser: users, action: actionName, year: year, month: month, action2: action2, actionAccessCountMonth: actionAccessCountMonth, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, accumulated: accumulated});
 							});
 						}else if(buttonAction=="accessDate"){
 							var dateStr = req.param('date');
@@ -150,12 +150,12 @@ module.exports = {
 										action2 = [];
 									}
 									console.log({accessCountDate: accessCountDate, date: dateStr, actionAccessCountDate: actionAccessCountDate.length, accumulated: accumulated});
-									res.view('log-month', {accessCountDate: accessCountDate, totalAccess: totalAccess, totalUser: users, date: dateStr, action2: action2, actionAccessCountDate: actionAccessCountDate, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, vote1: vote1, vote2: vote2, accumulated: accumulated});
+									res.view('log-month', {accessCountDate: accessCountDate, totalAccess: totalAccess, totalUser: users, date: dateStr, action2: action2, actionAccessCountDate: actionAccessCountDate, actionAccessTotal: actionAccessTotal, totalPrize1Winner: totalPrize1Winner, totalPrize2Winner: totalPrize2Winner, accumulated: accumulated});
 							});
 						}
 
-					});
-					});
+					// });
+					// });
 
 				});
 

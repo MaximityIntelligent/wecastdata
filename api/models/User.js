@@ -16,8 +16,35 @@ module.exports = {
     },
     credit: {
       type: 'integer',
-      defaultsTo: 0,
+      defaultsTo: 1,
       required: true
+    },
+    ad: {
+      type: 'string',
+      required: true
+    },
+    vote: {
+      type: 'string'
+    },
+    isRedeemVote: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+    isQuestionnaire: {
+      type: 'boolean',
+      defaultsTo: false
+    },
+    username: {
+      type: 'string'
+    },
+    phone: {
+      type: 'string'
+    },
+    email: {
+      type: 'string'
+    },
+    age:{
+      type: 'integer'
     },
     nickname: {
           type: 'string'

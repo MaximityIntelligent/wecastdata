@@ -10,6 +10,8 @@ module.exports = {
   attributes: {
     openId: {type: 'string'},
     action: {type: 'string'},
-    date: {type: 'date'}
+    date: {type: 'date'},
+    ad: {type: 'string'},
+    detail: {type: 'string'}
   }
 };
